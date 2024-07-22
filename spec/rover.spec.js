@@ -16,7 +16,7 @@ describe("Rover class", function() {
 
   it('response returned by receiveMessage contains the name of the message', function() {
     let commands = [new Command('STATUS_CHECK')];
-    let message = new Message('Test Message', commands);
+    let message = new Message('Test message with two commands', commands);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
     expect(response.message).toEqual('Test message with two commands');    
@@ -36,7 +36,7 @@ describe("Rover class", function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
     expect(response.results[0].completed).toEqual(true);
-    expect(response.results[0].roverStatus.more).toEqual("NORMAL");
+    expect(response.results[0].roverStatus.mode).toEqual("NORMAL");
     expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
     expect(response.results[0].roverStatus.position).toEqual(98382);
   });
@@ -56,7 +56,7 @@ describe("Rover class", function() {
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
     expect(response.results[1].completed).toEqual(false);
-    expect(rover.position).toEqual(500);
+    expect(rover.position).toEqual(98382);
   });
 
 });
